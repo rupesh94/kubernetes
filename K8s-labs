@@ -1,2 +1,83 @@
 Kuberntes Essential
-===================
+============================================================
+=============================================================
+Lab 1: Kubernetes Operations(kops) on AWS
+=============================================================
+
+##Task 1: Launching an EC2 Instance
+#create an EC2 Instance Ubuntu Server22.04 LTS (HVM), SSD Volume type t2.micro
+
+##Task 2: Create an IAM role
+Create an IAM role named "kops-admin-role" with the "AdministratorAccess" policy attached.
+Now, associate the IAM role "kops-admin-role" with your EC2 instance named "kops" by following these steps: ** 
+Navigate to the EC2 console and select the "kops" instance. ** Click on "Action" > "Security" > "Modify IAM role." 
+** Search for the "kops-admin-role" role, select it, and click "Update IAM role."
+
+##Now, attach the IAM kops-admin-role to your EC2 instance kops by following these steps:
+1. First select EC2 instance kops.
+2. Next click on Action > Security > Modify IAM role
+3. Search   for kops-admin role, select it and click Update IAM role
+
+##Task 3: Setting up a Kubernetes Cluster
+
+sudo hostnamectl set-hostname kops
+bash
+
+create file  vi kops.sh  and copy the entire content from the kops.sh file which is present in the same link.
+save the file :wq and run the command chmod 400 kops.sh 
+chmod 400 kops.sh
+
+. ./kops.sh
+
+kops get cluster
+
+kops validate cluster <cluster name>
+
+kubectl get nodes
+
+kops export kubeconfig --admin
+// export KOPS_STATE_STORE=s3://
+
+#For delete your entire cluster 
+=====================================
+example:  kops delete cluster --name=martuj-m1-k8s-2024-06-02-03-06.k8s.local --yes
+
+LAB-2 creating pod
+================================
+Task-1  Imperative method
+----------
+ kubectl run test --image=nginx:latest --port 80
+
+kubectl get pod
+alias k=kubectl
+k get pod
+k get pod -o wide
+k get nodes
+k describe pod test
+
+task-2 declarative method
+-----------------------------
+ vi mypod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+
+
+k create -f mypod.yaml
+kubectl get pod
+alias k=kubectl
+k get pod
+k get pod -o wide
+k get nodes
+k describe pod nginx-pod
+
+kubectl api-resources
+k get po -n kube-system
+k delete pod nginx-pod
+k delete pod nginx-pod
+
