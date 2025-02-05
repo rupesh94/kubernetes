@@ -149,7 +149,7 @@ spec:
     spec:
       containers:
       - name: nginx-ctr
-        image: nginx:1.12.2
+        image: nginx:1.11
         ports:
         - containerPort: 80
 
@@ -182,7 +182,7 @@ kubectl exec -it <pod_name> -- /bin/bash
 
 #Update the nginx image in Pod using below
 
-kubectl set image deployment/nginx-dep nginx-ctr=nginx:1.11
+kubectl set image deployment/nginx-dep nginx-ctr=nginx:1.12.2
 
 
 #Describe the deployment and see that the old pods are replaced with newer ones
