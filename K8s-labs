@@ -388,7 +388,7 @@ curl <EXTERNAL-IP>:NodePort
 
 kubectl get nodes -o wide | awk '{print $7}'
 
-ssh -t ubuntu@<Node_IP> curl <Cluster_IP>:<Service_Port>
+curl <Cluster_IP>:<Service_Port>
 ------------------------------------------------------------------------------------
 #Task 4  Setup LoadBalancer Service
 ------------------------------------------------------------------------------------
