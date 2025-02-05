@@ -342,17 +342,9 @@ kubectl get svc
 
 kubectl describe svc httpd-svc
 
-  # Get EndPoint of the service
+ #SSH to one of the machines and rerun the command in the previous task
 
-kubectl get ep  
-
- # Get External IPs of the machines in the cluster using below.
-
-kubectl get nodes -owide | awk '{print $7}'
-
-  #SSH to one of the machines and rerun the command in the previous task
-
-ssh -t ubuntu@<Node_IP> curl <Cluster_IP>:<Service_Port>
+ curl <Cluster_IP>:<Service_Port>
 
 
 ------------------------------------------------------------------------------
